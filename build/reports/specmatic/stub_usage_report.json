@@ -1,0 +1,1 @@
+{"specmaticConfigPath":"/Users/pranavgawri/Work/znsio/documentation/documentation_exercises/discriminator/specmatic.yaml","stubUsage":[{"type":"filesystem","specification":"/Users/pranavgawri/Work/znsio/documentation/documentation_exercises/discriminator/petstore.yaml","serviceType":"HTTP","operations":[{"path":"/pets","method":"POST","responseCode":200,"count":0}]}]}

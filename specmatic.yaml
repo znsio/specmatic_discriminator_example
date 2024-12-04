@@ -1,0 +1,6 @@
+sources:
+  - provider: filesystem
+    stub:
+      - petstore.yaml
+    test:
+      - petstore.yaml
