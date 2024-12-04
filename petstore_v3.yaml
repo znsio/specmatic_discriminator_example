@@ -13,6 +13,8 @@ paths:
                 - $ref: '#/components/schemas/Cat'
                 - $ref: '#/components/schemas/Dog'
                 - $ref: '#/components/schemas/Lizard'
+              discriminator:
+                propertyName: petType
       responses:
         '200':
           description: The response for Pets post operation.
@@ -20,9 +22,11 @@ paths:
             application/json:
               schema:
                 oneOf:
-                - $ref: '#/components/schemas/Cat'
-                - $ref: '#/components/schemas/Dog'
-                - $ref: '#/components/schemas/Lizard'
+                  - $ref: '#/components/schemas/Cat'
+                  - $ref: '#/components/schemas/Dog'
+                  - $ref: '#/components/schemas/Lizard'
+                discriminator:
+                  propertyName: petType
 
 components:
   schemas:
@@ -33,8 +37,6 @@ components:
       properties:
         petType:
           type: string
-      discriminator:
-        propertyName: petType
 
     Cat:
       allOf:
