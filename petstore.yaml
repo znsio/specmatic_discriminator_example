@@ -21,47 +21,39 @@ paths:
 components:
   schemas:
     Pet:
+      type: object
       required:
-        - petType
-        - name
-        - age
+      - petType
       properties:
         petType:
           type: string
-        name:
-          type: string
-          description: The name of the pet
-        age:
-          type: integer
-          minimum: 0
-          description: Age of the pet in years
       discriminator:
         propertyName: petType
-      oneOf:
-        - $ref: '#/components/schemas/Cat'
-        - $ref: '#/components/schemas/Dog'
-
+        mapping:
+          dog: Dog
+          cat: Cat
+          lizard: Lizard
     Cat:
       allOf:
-        - $ref: '#/components/schemas/Pet'
-        - type: object
-          required:
-            - whiskerLength
-          properties:
-            whiskerLength:
-              type: integer
-              minimum: 0
-              description: Length of whiskers in centimeters
-
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Cat`
+        properties:
+          name:
+            type: string
     Dog:
       allOf:
-        - $ref: '#/components/schemas/Pet'
-        - type: object
-          required:
-            - barkVolume
-          properties:
-            barkVolume:
-              type: integer
-              minimum: 0
-              maximum: 100
-              description: Volume of bark in decibels
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Dog`
+        properties:
+          bark:
+            type: string
+    Lizard:
+      allOf:
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Lizard`
+        properties:
+          lovesRocks:
+            type: boolean
