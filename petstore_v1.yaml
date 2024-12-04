@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Pet Store API
+  version: 1.0.0
+paths:
+  /pets:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '200':
+          description: The response for Pets post operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+
+components:
+  schemas:
+    Pet:
+      required:
+        - petType
+      properties:
+        petType:
+          type: string
+      discriminator:
+        propertyName: petType
+      oneOf:
+        - $ref: '#/components/schemas/Cat'
+        - $ref: '#/components/schemas/Dog'
+        - $ref: '#/components/schemas/Lizard'
+
+    Cat:
+      allOf:
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Cat`
+        properties:
+          name:
+            type: string
+    Dog:
+      allOf:
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Dog`
+        properties:
+          bark:
+            type: string
+    Lizard:
+      allOf:
+      - $ref: '#/components/schemas/Pet'
+      - type: object
+        # all other properties specific to a `Lizard`
+        properties:
+          lovesRocks:
+            type: boolean
