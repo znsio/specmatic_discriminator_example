@@ -29,10 +29,7 @@ components:
           type: string
       discriminator:
         propertyName: petType
-        mapping:
-          dog: Dog
-          cat: Cat
-          lizard: Lizard
+
     Cat:
       allOf:
       - $ref: '#/components/schemas/Pet'
